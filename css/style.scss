@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:700|Titillium+Web:400,700&display=swap');
+
+// Color variables
+$white: #fff;
+$black: #000;
+$gray: #999;
+$dark-gray: #333;
+$light-gray: #c3c0c5;
+$green: #739024;
+
+//Mixin for breakpoints of media queries
+@mixin for-size($size) {
+    @if $size == phone-only {
+      @media screen and (max-width: 707px) { @content; }
+    } @else if $size == tablet-portrait-up {
+      @media (min-width: 708px) { @content; }
+    } @else if $size == tablet-landscape-up {
+      @media (min-width: 900px) { @content; }
+    } @else if $size == desktop-up {
+      @media (min-width: 1200px) { @content; }
+    } @else if $size == big-desktop-up {
+      @media (min-width: 1800px) { @content; }
+    }
+  }
+
+// Font variables
+$merriweather: 'Merriweather', serif;
+$titillium: 'Titillium Web', sans-serif;
+
+// Variable to nullify margin and padding
+%zero-margin-padding {
+    margin: 0;
+    padding: 0;
+}
+
+%zero-margin {
+    margin: 0;
+}
+
+//Main styles
+
+body {
+    background: url('../images/main-bg.jpg');
+    font-family: $titillium;
+}
+
+h2 {
+    font-family: $titillium;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 0.56;
+    text-transform: uppercase;
+    color: $dark-gray;
+    @extend %zero-margin-padding;
+    @include for-size(phone-only) {
+        line-height: 1.5;
+    }
+}
+
+h3 {
+    max-width: 480px;
+    margin: 0 auto;
+    font-family: $merriweather;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1.33;
+    text-align: center;
+    color: $dark-gray;
+}
+
+p {
+    @extend %zero-margin-padding;
+}
+
+.homepage {
+    max-width: 1002px;
+    margin: 0 auto;
+    background-color: $white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+
+    // Header block
+    &__header {
+        height: 43px;
+        padding: 38px 42px 23px 32px;
+        &__navigation {
+            @extend %zero-margin-padding;
+            float: right;
+            &--list {
+                @extend %zero-margin-padding;
+                list-style: none;
+                &__element {
+                    float: left;
+                    padding: 8px 12px;
+                    a {
+                        color: $dark-gray;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        line-height: 1;
+                    }
+                    &.active {
+                        border: solid 1px $light-gray;
+                        padding: 7px 11px;
+                        background-color: rgba(26, 23, 27, 0.1);
+                        border-radius: 4px;
+
+                        @include for-size(phone-only) {
+                            width: 93%;
+                            padding-left: 25px;
+                            border-radius: 0;
+                            background: $light-gray;
+                        }
+                    }
+                    &:last-child {
+                        margin-right: -12px;
+                    }
+                    @include for-size(phone-only) {
+                        width: 93%;
+                        border-radius: 0;
+                        padding-left: 25px;
+                        background: $white;
+                    }
+                }
+            }
+            @include for-size(phone-only) {
+                position: absolute;
+                top: 104px;
+                float: none;
+                width: 100%;
+                background: $white;
+                display: none;
+            }
+            &.active {
+                display: block;
+            }
+        }
+        img {
+            @include for-size(phone-only) {
+                padding-left: 25px;
+            }
+        }
+        &--mobile__navigation {
+            display: none;
+            @include for-size(phone-only) {
+                display: block;
+                width: 45px;
+                float: right;
+                padding-right: 25px;
+            }
+        }
+        @include for-size(phone-only) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: $white;
+            z-index: 1;
+            padding: 38px 0 23px;
+        }
+    }
+    &__top__hr, &__bottom__hr {
+        width: 112%;
+        height: 1px;
+        @extend %zero-margin;
+        background-color: $light-gray;
+        margin-left: -139px;
+        @media screen and (min-width: 1281px) {
+            position: relative;
+            width: 100%;
+            margin-left: 0;
+        }
+        @include for-size(phone-only) {    
+            z-index: 0;
+            position: relative;
+            width: 100%;
+            margin-left: 0;
+            top: 96px;
+         }
+    }
+
+    // Main content block
+    &__main--content {
+        width: 65%;
+        display: inline-block;
+        padding: 0 30px;
+        &__article {
+            &--date {
+                font-size: 14px;
+                color: $gray;
+                margin: 35px 0 12px;
+            }
+            &--paragraph {
+                font-size: 14px;
+                margin-top: 25px;
+                line-height: 1.43;
+                &.nomargin {
+                    @extend %zero-margin;
+                }
+            }
+            h3 {
+                &:before, &:after {
+                    content: '';
+                    display: block;
+                    width: 303px;
+                    height: 1px;
+                    background-color: $light-gray;
+                    margin: 15px auto;
+                }
+                &:before {
+                    margin-bottom: 9px;
+                }
+            }
+            &__image {
+                max-width: 221px;
+                float: left;
+                margin: 19px 19px 0 0;
+                img {
+                    width: 100%;
+                }
+                &--desc {
+                    font-family: Verdana;
+                    font-size: 11px;
+                    line-height: 1.64;
+                    color: $gray;
+                }
+                @include for-size(phone-only) {   
+                    float: none;
+                    margin: 20px auto;
+                }
+            }
+        }
+        &__formular {
+            h2 {
+                margin: 50px 0 0;
+                border-bottom: 1px solid $light-gray;
+                padding-bottom: 15px;
+            }
+            p {
+                width: 74%;
+                float: right;
+                font-size: 14px;
+                color: $dark-gray;
+                margin: 25px 0 10px;
+                &.error--message {
+                    height: 16px;
+                    font-family: Verdana, Geneva, Tahoma, sans-serif;
+                    font-size: 13px;
+                    color: #e30042;
+                    margin: 0 0 10px;
+                }
+            }
+            &__labels-list {
+                width: 22%;
+                float: left;
+                margin-top: 25px;
+                margin-right: 20px;
+                label {
+                    width: 100%;
+                    display: block;
+                    color: $dark-gray;
+                    text-align: right;
+                    font-size: 14px;
+                    line-height: 2.7;
+                }
+            }
+            &__form {
+                width: 46%;
+                float: left;
+                form {
+                    display: inline-block;
+                }
+                input, textarea {
+                    box-shadow: inset 0.5px 0.9px 3px 0 rgba(0, 0, 0, 0.35);
+                    border: solid 1px $light-gray;
+                    border-radius: 4px;
+                    width: 96%;
+                    padding: 0;
+                    outline: none;
+                }
+                textarea {
+                    width: 92.5%;
+                    padding: 10px;
+                    resize: none;
+                }
+                input {
+                    height: 26px;
+                    margin-bottom: 10px;
+                    padding-left: 10px;
+                }
+                &--button {
+                    width: 102px;
+                    height: 28px;
+                    float: right;
+                    margin: 8px 0 0;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35), inset 1px 1.7px 0 0 rgba(255, 255, 255, 0.35);
+                    border: solid 1px #536e0b;
+                    border-radius: 4px;
+                    background-image: linear-gradient(to top, $green, #b6c58e);
+                    font-family: $titillium;
+                    font-size: 14px;
+                    line-height: 1.29;
+                    color: $white;
+                    outline: none;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+            .green__star {
+                color: $green;
+            }
+        }
+        &__contact {  
+            float: left;
+            width: 100%;
+            h2 {
+                margin: 50px 0 0;
+                border-bottom: 1px solid #c3c0c5;
+                padding-bottom: 15px;
+            }
+            &__company--desc, ol li {
+                font-size: 14px;
+                color: $dark-gray;
+            }
+            ol {
+                margin: 20px 0 30px;
+                width: 35%;
+                display: inline-block;
+                padding-left: 25px;
+            }
+            &__company--desc {
+                margin: 20px 0 30px;
+                width: 50%;
+                float: right;
+            }
+        }
+        @include for-size(phone-only) {
+            width: 90%;
+            padding: 120px 15px;
+        }
+    }
+    
+    // Side content block
+    &__aside {
+        width: 22%;
+        float: right;
+        padding-right: 30px;
+        margin-top: 60px;
+        h4 {
+            @extend %zero-margin;
+            padding-bottom: 6px;
+            color: $dark-gray;
+            font-size: 18px;
+            font-weight: normal;
+            border-bottom: 1px solid $light-gray;
+            margin-bottom: 15px;
+        }
+        ul {
+            @extend %zero-margin;
+            padding-left: 20px;
+            list-style-image: url(../images/list-item-image.png);
+            margin: 0 0 30px;
+            li {
+                margin-bottom: 2px;
+                a {
+                    font-size: 14px;
+                    font-weight: normal;
+                    font-style: normal;
+                    line-height: 1.29;
+                    color: $green;
+                }
+            }
+        }
+        a {
+            text-decoration: none;
+            max-width: 145px;
+            display: inline-block;
+            color: $dark-gray;
+            font-size: 14px;
+        }
+        p {
+            font-size: 14px;
+        }
+        &__contact {
+            margin-bottom: 30px;
+            &--telephone img, &--email img {
+                margin-right: 5px;
+            }
+        }
+        &__teaser {
+            h4 {
+                margin-bottom: 10px;
+            }
+            &--wrapper {
+                border: solid 1px $light-gray;
+                background-color: rgba(170, 170, 170, 0.2);
+                img {
+                    width: 100%;
+                }
+                p {
+                    padding-left: 12px;
+                    font-family: Verdana;
+                    font-size: 13px;
+                    color: $dark-gray;
+                }
+                a {
+                    display: block;
+                    max-width: 198px;
+                    width: 100%;
+                    color: $white;
+                    margin: 10px auto;
+                    border-radius: 5px;
+                    text-align: center;
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.35), inset 1px 1.7px 0 0 rgba(255, 255, 255, 0.35);
+                    border: solid 1px #536e0b;
+                    background-image: linear-gradient(to top, $green, #b6c58e);
+                }
+            }
+        }
+        @include for-size(phone-only) {
+            width: 90%;
+            float: none;
+            margin: 0 auto 10px;
+            padding-right: 0;
+            margin-top: 60px; 
+        }
+    }
+
+
+    // Footer block
+    &__footer {
+        height: 64px;
+        padding: 10px 42px 0 32px;
+        &__navigation {
+            @extend %zero-margin-padding;
+            float: right;
+            &--list {
+                @extend %zero-margin-padding;
+                list-style: none;
+                &__element {
+                    line-height: 1;
+                    float: left;
+                    padding: 8px 5px 8px 0;
+                    a {
+                        color: $green;
+                        text-decoration: none;
+                        text-transform: capitalize;
+                        font-size: 14px;
+                        line-height: 1.29;
+                    }
+                    &:last-child {
+                        margin-right: -12px;
+                    }
+                }
+            }
+        }
+        &__copyright {
+            font-size: 14px;
+        }
+    }
+}
